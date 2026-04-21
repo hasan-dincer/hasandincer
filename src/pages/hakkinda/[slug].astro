@@ -16,7 +16,7 @@ const { Content } = await sayfa.render();
 
 <BaseLayout title={sayfa.data.baslik} description={`Hasan Dinçer — ${sayfa.data.baslik}`}>
   <article class="content-container">
-    <a href="/hakkinda" class="back-link">← Hakkında</a>
+    <a href={`${import.meta.env.BASE_URL}hakkinda`} class="back-link">← Hakkında</a>
     <div class="prose">
       <Content />
     </div>

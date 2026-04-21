@@ -31,7 +31,7 @@ const bolumler = tumBolumler
   }}
 >
   <article class="content-container">
-    <a href="/kitaplar" class="back-link">← Kitaplar</a>
+    <a href={`${import.meta.env.BASE_URL}kitaplar`} class="back-link">← Kitaplar</a>
 
     <div class="prose">
       <Content />
@@ -51,7 +51,7 @@ const bolumler = tumBolumler
         <ul class="chapter-list">
           {bolumler.map((bolum) => (
             <li class="chapter-item">
-              <a href={`/kitaplar/${kitap.slug}/${bolum.slug.split('/').pop()}`} class="chapter-link" id={`bolum-${bolum.data.bolumNo}`}>
+              <a href={`${import.meta.env.BASE_URL}kitaplar/${kitap.slug}/${bolum.slug.split('/').pop()}`} class="chapter-link" id={`bolum-${bolum.data.bolumNo}`}>
                 <span class="chapter-number">{String(bolum.data.bolumNo).padStart(2, '0')}</span>
                 <div>
                   <div class="chapter-title">{bolum.data.baslik}</div>

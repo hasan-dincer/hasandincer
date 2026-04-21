@@ -27,8 +27,8 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
     <SEO 
       title={title} 
       description={description} 
@@ -56,13 +56,13 @@ const {
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a href="/" class="site-logo">Hasan Dinçer</a>
+        <a href={import.meta.env.BASE_URL} class="site-logo">Hasan Dinçer</a>
         <nav class="site-nav">
-          <a href="/kitaplar">Kitaplar</a>
-          <a href="/etkinlikler">Etkinlikler</a>
-          <a href="/album">Albüm</a>
-          <a href="/hakkinda">Hakkında</a>
-          <a href="/hakkinda/iletisim">İletişim</a>
+          <a href={`${import.meta.env.BASE_URL}kitaplar`}>Kitaplar</a>
+          <a href={`${import.meta.env.BASE_URL}etkinlikler`}>Etkinlikler</a>
+          <a href={`${import.meta.env.BASE_URL}album`}>Albüm</a>
+          <a href={`${import.meta.env.BASE_URL}hakkinda`}>Hakkında</a>
+          <a href={`${import.meta.env.BASE_URL}hakkinda/iletisim`}>İletişim</a>
           <ThemeToggle />
         </nav>
       </div>

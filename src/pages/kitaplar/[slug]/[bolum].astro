@@ -35,7 +35,7 @@ const kitapBaslik = kitap?.data.baslik ?? kitapSlug;
 
 <BaseLayout title={`${bolum.data.baslik} — ${kitapBaslik}`} description={bolum.data.ozet}>
   <article class="content-container">
-    <a href={`/kitaplar/${kitapSlug}`} class="back-link">← {kitapBaslik}</a>
+    <a href={`${import.meta.env.BASE_URL}kitaplar/${kitapSlug}`} class="back-link">← {kitapBaslik}</a>
 
     <div class="prose">
       <Content />
@@ -43,14 +43,14 @@ const kitapBaslik = kitap?.data.baslik ?? kitapSlug;
 
     <nav class="chapter-nav">
       {prevBolum ? (
-        <a href={`/kitaplar/${kitapSlug}/${prevBolum.slug.split('/').pop()}`} class="chapter-nav-link prev">
+        <a href={`${import.meta.env.BASE_URL}kitaplar/${kitapSlug}/${prevBolum.slug.split('/').pop()}`} class="chapter-nav-link prev">
           <span class="chapter-nav-label">Önceki</span>
           <span class="chapter-nav-title">{prevBolum.data.baslik}</span>
         </a>
       ) : <span />}
 
       {nextBolum ? (
-        <a href={`/kitaplar/${kitapSlug}/${nextBolum.slug.split('/').pop()}`} class="chapter-nav-link next">
+        <a href={`${import.meta.env.BASE_URL}kitaplar/${kitapSlug}/${nextBolum.slug.split('/').pop()}`} class="chapter-nav-link next">
           <span class="chapter-nav-label">Sonraki</span>
           <span class="chapter-nav-title">{nextBolum.data.baslik}</span>
         </a>
