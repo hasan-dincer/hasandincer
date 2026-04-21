@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { getUrl } from '../../utils/url';
 
 export async function getStaticPaths() {
   const sayfalar = await getCollection('hakkinda');
@@ -16,7 +17,7 @@ const { Content } = await sayfa.render();
 
 <BaseLayout title={sayfa.data.baslik} description={`Hasan Dinçer — ${sayfa.data.baslik}`}>
   <article class="content-container">
-    <a href={`${import.meta.env.BASE_URL}hakkinda`} class="back-link">← Hakkında</a>
+    <a href={getUrl('hakkinda')} class="back-link">← Hakkında</a>
     <div class="prose">
       <Content />
     </div>
