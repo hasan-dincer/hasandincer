@@ -9,7 +9,7 @@ const sayfalar = (await getCollection('hakkinda'))
 // Render the first page (biyografi) as the main hakkında content
 const anaSayfa = sayfalar[0];
 const { Content } = anaSayfa ? await anaSayfa.render() : { Content: null };
-const digerSayfalar = sayfalar.slice(1);
+const digerSayfalar = sayfalar.slice(1).filter(s => s.slug !== 'iletisim');
 ---
 
 <BaseLayout title="Hakkında" description="Hasan Dinçer hakkında biyografi ve iletişim bilgileri.">
