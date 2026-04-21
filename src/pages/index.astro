@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const kitaplar = (await getCollection('kitaplar'))
+  .filter((k) => !k.data.draft)
+  .sort((a, b) => a.data.sira - b.data.sira);
+---
+
+<BaseLayout title="Ana Sayfa" description="Hasan Dinçer — Yazar, roman ve edebiyat dünyası.">
+  <section class="hero">
+    <h1>Hasan Dinçer</h1>
+    <hr class="hero-divider" />
+    <p class="hero-subtitle">
+      Kelimelerin sessiz akışında, hikâyelerin izinde.
+      <br />
+      Roman, öykü ve edebiyat üzerine yazılar.
+    </p>
+  </section>
+
+  <section class="page-container">
+    <h2 class="section-title">Kitaplar</h2>
+    <div class="card-grid">
+      {kitaplar.map((kitap) => (
+        <a href={`/kitaplar/${kitap.slug}`} class="card" id={`kitap-${kitap.slug}`}>
+          <span class="card-meta">{kitap.data.tur}</span>
+          <h3 class="card-title">{kitap.data.baslik}</h3>
+          {kitap.data.ozet && <p class="card-summary">{kitap.data.ozet}</p>}
+          <div class="card-footer">
+            {kitap.data.yayinevi && <span>{kitap.data.yayinevi}</span>}
+            {kitap.data.yayinTarihi && (
+              <span>{kitap.data.yayinTarihi.getFullYear()}</span>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

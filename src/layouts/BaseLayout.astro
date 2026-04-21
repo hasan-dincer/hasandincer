@@ -1,0 +1,84 @@
+---
+import SEO from '../components/SEO.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'book' | 'article';
+  bookData?: {
+    isbn?: string;
+    yayinTarihi?: Date;
+  };
+}
+
+const {
+  title,
+  description,
+  image,
+  type,
+  bookData
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <SEO 
+      title={title} 
+      description={description} 
+      image={image} 
+      type={type} 
+      bookData={bookData} 
+    />
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="site-logo">Hasan Dinçer</a>
+        <nav class="site-nav">
+          <a href="/kitaplar">Kitaplar</a>
+          <a href="/etkinlikler">Etkinlikler</a>
+          <a href="/album">Albüm</a>
+          <a href="/hakkinda">Hakkında</a>
+          <ThemeToggle />
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-transition">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      &copy; {new Date().getFullYear()} Hasan Dinçer. Tüm hakları saklıdır.
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
