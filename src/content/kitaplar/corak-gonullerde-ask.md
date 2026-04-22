@@ -6,6 +6,9 @@ yayinevi: "Müptela Yayınevi"
 kapakGorsel: "/images/corak-gonullerde-ask-cover.jpeg"
 ozet: "Bazı aşklar filizlenmez; toprağı çoraktır, kalbi yaralıdır."
 tur: "Roman"
+satinAlmaLinkleri:
+  - platform: "Müptela Yayınları"
+    url: "https://www.ithakiyayingrubu.com/corak-gonullerde-ask.aspx"
 spitin: false
 sira: 2
 draft: false

@@ -46,6 +46,16 @@ const bolumler = tumBolumler
       </div>
     )}
 
+    {kitap.data.satinAlmaLinkleri && kitap.data.satinAlmaLinkleri.length > 0 && (
+      <div class="purchase-links">
+        {kitap.data.satinAlmaLinkleri.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer" class="purchase-btn">
+            {link.platform}'dan Satın Al
+          </a>
+        ))}
+      </div>
+    )}
+
     {bolumler.length > 0 && (
       <section style="margin-top: var(--space-2xl);">
         <h2 class="section-title">Bölümler</h2>
@@ -188,5 +198,38 @@ const bolumler = tumBolumler
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Purchase Links */
+  .purchase-links {
+    margin-top: var(--space-xl);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .purchase-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .purchase-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   }
 </style>

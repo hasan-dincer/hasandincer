@@ -15,6 +15,10 @@ const kitaplar = defineCollection({
     isbn: z.string().optional(),
     ozet: z.string().optional(),
     tur: z.string().optional(),
+    satinAlmaLinkleri: z.array(z.object({
+      platform: z.string(),
+      url: z.string().url(),
+    })).optional(),
     spitin: z.boolean().default(false),
     sira: z.number().default(0),
     draft: z.boolean().default(false),

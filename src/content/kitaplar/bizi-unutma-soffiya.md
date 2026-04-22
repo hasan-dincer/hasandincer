@@ -6,6 +6,15 @@ yayinevi: "La Kitap"
 kapakGorsel: "/images/bizi_unutma_soffiya_cover.jpg"
 ozet: "Bir çocuğun gözünden savaşın ve göçün acı hikayesi."
 tur: "Roman"
+satinAlmaLinkleri:
+  - platform: "Kitapyurdu"
+    url: "https://www.kitapyurdu.com/arama/varsayilan?keyword=Bizi+Unutma+Soffiya"
+  - platform: "Amazon"
+    url: "https://www.amazon.com.tr/Bizi-Unutma-Soffiya-Hasan-Din%C3%A7er/dp/6052262877"
+  - platform: "BKM Kitap"
+    url: "https://www.bkmkitap.com/bizi-unutma-soffiya?srsltid=AfmBOorPohsVdSJIZLrBIT-gzpUWfw8WBmuVxRTROzvUbsohjarVnVrk"
+  - platform: "La Kitap"
+    url: "https://www.lakitap.com/bizi-unutma-soffiya"
 spitin: true
 sira: 1
 draft: false
