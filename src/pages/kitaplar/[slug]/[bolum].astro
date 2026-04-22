@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const bolumler = await getCollection('bolumler');
+  return bolumler.map((bolum) => {
+    const parts = bolum.slug.split('/');
+    const kitapSlug = parts[0];
+    const bolumSlug = parts[1];
+    return {
+      params: { slug: kitapSlug, bolum: bolumSlug },
+      props: { bolum, kitapSlug },
+    };
+  });
+}
+
+const { bolum, kitapSlug } = Astro.props;
+const { Content } = await bolum.render();
+
+// Get all chapters for this book for prev/next navigation
+const tumBolumler = (await getCollection('bolumler'))
+  .filter((b) => b.data.kitapSlug === kitapSlug && !b.data.draft)
+  .sort((a, b) => a.data.bolumNo - b.data.bolumNo);
+
+const currentIndex = tumBolumler.findIndex((b) => b.slug === bolum.slug);
+const prevBolum = currentIndex > 0 ? tumBolumler[currentIndex - 1] : null;
+const nextBolum = currentIndex < tumBolumler.length - 1 ? tumBolumler[currentIndex + 1] : null;
+
+// Get book title
+const kitaplar = await getCollection('kitaplar');
+const kitap = kitaplar.find((k) => k.slug === kitapSlug);
+const kitapBaslik = kitap?.data.baslik ?? kitapSlug;
+---
+
+<BaseLayout title={`${bolum.data.baslik} — ${kitapBaslik}`} description={bolum.data.ozet}>
+  <article class="content-container">
+    <a href={`/kitaplar/${kitapSlug}`} class="back-link">← {kitapBaslik}</a>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="chapter-nav">
+      {prevBolum ? (
+        <a href={`/kitaplar/${kitapSlug}/${prevBolum.slug.split('/').pop()}`} class="chapter-nav-link prev">
+          <span class="chapter-nav-label">Önceki</span>
+          <span class="chapter-nav-title">{prevBolum.data.baslik}</span>
+        </a>
+      ) : <span />}
+
+      {nextBolum ? (
+        <a href={`/kitaplar/${kitapSlug}/${nextBolum.slug.split('/').pop()}`} class="chapter-nav-link next">
+          <span class="chapter-nav-label">Sonraki</span>
+          <span class="chapter-nav-title">{nextBolum.data.baslik}</span>
+        </a>
+      ) : <span />}
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .chapter-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--color-border-light);
+    border-radius: 6px;
+    transition: border-color var(--transition), background var(--transition);
+    color: inherit;
+    text-decoration: none;
+    max-width: 48%;
+  }
+
+  .chapter-nav-link:hover {
+    border-color: var(--color-accent-light);
+    background: var(--color-bg-alt);
+    color: inherit;
+  }
+
+  .chapter-nav-link.next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .chapter-nav-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .chapter-nav-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+</style>

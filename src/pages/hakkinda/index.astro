@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const sayfalar = (await getCollection('hakkinda'))
+  .filter((s) => !s.data.draft)
+  .sort((a, b) => a.data.sira - b.data.sira);
+
+// Render the first page (biyografi) as the main hakkında content
+const anaSayfa = sayfalar[0];
+const { Content } = anaSayfa ? await anaSayfa.render() : { Content: null };
+const digerSayfalar = sayfalar.slice(1);
+---
+
+<BaseLayout title="Hakkında" description="Hasan Dinçer hakkında biyografi ve iletişim bilgileri.">
+  <section class="page-container">
+    {Content && (
+      <div class="about-author">
+        <div class="author-photo">
+          <img src="/images/hasan_dincer.jpeg" alt="Hasan Dinçer" loading="lazy" />
+        </div>
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    )}
+
+    {digerSayfalar.length > 0 && (
+      <nav style="margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--color-border-light);">
+        {digerSayfalar.map((sayfa) => (
+          <a href={`/hakkinda/${sayfa.slug}`} class="card" style="margin-bottom: var(--space-md); display: block;" id={`hakkinda-${sayfa.slug}`}>
+            <h3 class="card-title">{sayfa.data.baslik}</h3>
+          </a>
+        ))}
+      </nav>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .about-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+  
+  @media (min-width: 768px) {
+    .about-author {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--space-3xl);
+    }
+  }
+
+  .author-photo {
+    flex-shrink: 0;
+    width: 250px;
+  }
+
+  .about-author .prose {
+    flex: 1;
+    min-width: 0; /* Prevents overflow */
+  }
+
+  .author-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border-light);
+    filter: sepia(10%) contrast(105%); /* subtle literary aesthetic filtering */
+  }
+</style>

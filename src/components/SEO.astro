@@ -1,0 +1,86 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'book' | 'article';
+  bookData?: {
+    isbn?: string;
+    yayinTarihi?: Date;
+  };
+}
+
+const {
+  title,
+  description = 'Hasan Dinçer — Yazar, Roman, Edebiyat',
+  image = '/favicon.svg',
+  type = 'website',
+  bookData,
+} = Astro.props;
+
+const authorName = 'Hasan Dinçer';
+const pageTitle = `${title} — ${authorName}`;
+
+// Build absolute URLs for OpenGraph
+const siteUrl = Astro.site ? Astro.site.origin : Astro.url.origin;
+const imageUrl = new URL(image, siteUrl).href;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": authorName,
+  "jobTitle": "Yazar",
+  "url": siteUrl
+};
+
+let bookSchema = null;
+if (type === 'book') {
+  bookSchema = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": title,
+    "author": {
+      "@type": "Person",
+      "name": authorName
+    },
+    ...(description && { "description": description }),
+    ...(image && { "image": imageUrl }),
+    ...(bookData?.isbn && { "isbn": bookData.isbn }),
+    ...(bookData?.yayinTarihi && { "datePublished": bookData.yayinTarihi.toISOString().split('T')[0] })
+  };
+}
+
+const schemas = bookSchema ? [personSchema, bookSchema] : [personSchema];
+---
+
+<!-- Global Metadata -->
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={pageTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageUrl} />
+
+<!-- Book Specific Tags -->
+{type === 'book' && (
+  <>
+    <meta property="book:author" content={authorName} />
+    {bookData?.isbn && <meta property="book:isbn" content={bookData.isbn} />}
+    {bookData?.yayinTarihi && <meta property="book:release_date" content={bookData.yayinTarihi.toISOString()} />}
+  </>
+)}
+
+<!-- JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />

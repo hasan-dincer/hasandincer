@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const aylar = [
+  'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+  'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
+];
+
+const turLabels: Record<string, string> = {
+  'imza-gunu': 'İmza Günü',
+  'soylesi': 'Söyleşi',
+  'okuma': 'Okuma',
+  'festival': 'Festival',
+  'diger': 'Etkinlik',
+};
+
+const etkinlikler = (await getCollection('etkinlikler'))
+  .filter((e) => !e.data.draft)
+  .sort((a, b) => b.data.tarih.getTime() - a.data.tarih.getTime());
+---
+
+<BaseLayout title="Etkinlikler" description="Hasan Dinçer'in katıldığı etkinlikler, imza günleri ve söyleşiler.">
+  <section class="page-container">
+    <h1 class="section-title">Etkinlikler</h1>
+
+    <div class="event-list">
+      {etkinlikler.map((etkinlik) => {
+        const tarih = etkinlik.data.tarih;
+        return (
+          <div class="event-item" id={`etkinlik-${etkinlik.slug}`}>
+            <div class="event-date-badge">
+              <span class="day">{tarih.getDate()}</span>
+              <span class="month">{aylar[tarih.getMonth()]} {tarih.getFullYear()}</span>
+            </div>
+            <div class="event-info">
+              <span class="event-badge">{turLabels[etkinlik.data.tur] ?? etkinlik.data.tur}</span>
+              <h3>{etkinlik.data.baslik}</h3>
+              {etkinlik.data.konum && <p class="event-location">📍 {etkinlik.data.konum}</p>}
+              {etkinlik.data.aciklama && <p class="event-description">{etkinlik.data.aciklama}</p>}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>

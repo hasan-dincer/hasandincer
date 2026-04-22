@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const sayfalar = await getCollection('hakkinda');
+  return sayfalar.map((sayfa) => ({
+    params: { slug: sayfa.slug },
+    props: { sayfa },
+  }));
+}
+
+const { sayfa } = Astro.props;
+const { Content } = await sayfa.render();
+---
+
+<BaseLayout title={sayfa.data.baslik} description={`Hasan Dinçer — ${sayfa.data.baslik}`}>
+  <article class="content-container">
+    <a href="/hakkinda" class="back-link">← Hakkında</a>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
