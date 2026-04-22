@@ -1,6 +1,7 @@
 ---
 import SEO from '../components/SEO.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import { getUrl } from '../utils/url';
 
 export interface Props {
   title: string;
@@ -27,8 +28,8 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href={getUrl('favicon.svg')} />
+    <link rel="sitemap" href={getUrl('sitemap-index.xml')} />
     <SEO 
       title={title} 
       description={description} 
@@ -56,12 +57,13 @@ const {
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a href="/" class="site-logo">Hasan Dinçer</a>
+        <a href={getUrl('/')} class="site-logo">Hasan Dinçer</a>
         <nav class="site-nav">
-          <a href="/kitaplar">Kitaplar</a>
-          <a href="/etkinlikler">Etkinlikler</a>
-          <a href="/album">Albüm</a>
-          <a href="/hakkinda">Hakkında</a>
+          <a href={getUrl('kitaplar')}>Kitaplar</a>
+          <a href={getUrl('etkinlikler')}>Etkinlikler</a>
+          <a href={getUrl('album')}>Albüm</a>
+          <a href={getUrl('hakkinda')}>Hakkında</a>
+          <a href={getUrl('hakkinda/iletisim')}>İletişim</a>
           <ThemeToggle />
         </nav>
       </div>

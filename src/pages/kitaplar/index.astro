@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { getUrl } from '../../utils/url';
 
 // Fetch books and chapters
 const kitaplar = (await getCollection('kitaplar'))
@@ -30,7 +31,7 @@ for (const bolum of tumBolumler) {
         return (
           <article class="book-card" id={`kitap-${kitap.slug}`}>
             {/* Cover image */}
-            <a href={`/kitaplar/${kitap.slug}`} class="book-cover-link">
+            <a href={getUrl(`kitaplar/${kitap.slug}`)} class="book-cover-link">
               {kitap.data.kapakGorsel ? (
                 <img
                   src={kitap.data.kapakGorsel}
@@ -50,7 +51,7 @@ for (const bolum of tumBolumler) {
               <div class="book-header">
                 <span class="book-genre">{kitap.data.tur}</span>
                 <h2 class="book-title">
-                  <a href={`/kitaplar/${kitap.slug}`}>{kitap.data.baslik}</a>
+                  <a href={getUrl(`kitaplar/${kitap.slug}`)}>{kitap.data.baslik}</a>
                 </h2>
                 <div class="book-meta">
                   {kitap.data.yayinevi && <span>{kitap.data.yayinevi}</span>}
@@ -72,7 +73,7 @@ for (const bolum of tumBolumler) {
                     {bolumler.map((bolum) => (
                       <li>
                         <a
-                          href={`/kitaplar/${kitap.slug}/${bolum.slug.split('/').pop()}`}
+                          href={getUrl(`kitaplar/${kitap.slug}/${bolum.slug.split('/').pop()}`)}
                           class="sample-link"
                           id={`sample-${kitap.slug}-${bolum.data.bolumNo}`}
                         >
@@ -86,7 +87,7 @@ for (const bolum of tumBolumler) {
                 </div>
               )}
 
-              <a href={`/kitaplar/${kitap.slug}`} class="book-detail-link">
+              <a href={getUrl(`kitaplar/${kitap.slug}`)} class="book-detail-link">
                 Kitap Detayı →
               </a>
             </div>

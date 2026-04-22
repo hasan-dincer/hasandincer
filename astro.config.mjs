@@ -3,5 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://hasandincer.com.tr',
+  site: 'https://hasan-dincer.github.io',
+  base: '/hasandincer',
 });

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { getUrl } from '../utils/url';
 
 const kitaplar = (await getCollection('kitaplar'))
   .filter((k) => !k.data.draft)
@@ -22,7 +23,7 @@ const kitaplar = (await getCollection('kitaplar'))
     <h2 class="section-title">Kitaplar</h2>
     <div class="card-grid">
       {kitaplar.map((kitap) => (
-        <a href={`/kitaplar/${kitap.slug}`} class="card" id={`kitap-${kitap.slug}`}>
+        <a href={getUrl(`kitaplar/${kitap.slug}`)} class="card" id={`kitap-${kitap.slug}`}>
           <span class="card-meta">{kitap.data.tur}</span>
           <h3 class="card-title">{kitap.data.baslik}</h3>
           {kitap.data.ozet && <p class="card-summary">{kitap.data.ozet}</p>}
