@@ -34,7 +34,7 @@ for (const bolum of tumBolumler) {
             <a href={getUrl(`kitaplar/${kitap.slug}`)} class="book-cover-link">
               {kitap.data.kapakGorsel ? (
                 <img
-                  src={kitap.data.kapakGorsel}
+                  src={getUrl(kitap.data.kapakGorsel)}
                   alt={`${kitap.data.baslik} kapak görseli`}
                   class="book-cover"
                   loading="lazy"

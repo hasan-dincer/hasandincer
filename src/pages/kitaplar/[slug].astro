@@ -24,7 +24,7 @@ const bolumler = tumBolumler
 <BaseLayout 
   title={kitap.data.baslik} 
   description={kitap.data.ozet}
-  image={kitap.data.kapakGorsel}
+  image={kitap.data.kapakGorsel ? getUrl(kitap.data.kapakGorsel) : undefined}
   type="book"
   bookData={{
     isbn: kitap.data.isbn,

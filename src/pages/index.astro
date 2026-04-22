@@ -9,6 +9,7 @@ const kitaplar = (await getCollection('kitaplar'))
 ---
 
 <BaseLayout title="Ana Sayfa" description="Hasan Dinçer — Yazar, roman ve edebiyat dünyası.">
+  <div class="home-background" style={`background-image: url('${getUrl('images/iki_kitap_seffaf.png')}');`}></div>
   <section class="hero">
     <h1>Hasan Dinçer</h1>
     <hr class="hero-divider" />
@@ -38,3 +39,25 @@ const kitaplar = (await getCollection('kitaplar'))
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .home-background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+
+  /* Koyu temada görselin fazla parlamaması için ekstra karartma */
+  :global(.dark) .home-background {
+    opacity: 0.1;
+  }
+</style>
