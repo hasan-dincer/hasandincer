@@ -15,7 +15,7 @@ Hasan Dinçer ile iletişime geçmek için aşağıdaki kanalları kullanabilirs
 ## Sosyal Medya
 
 - [Facebook](https://www.facebook.com/hasandincer/)
-- [Instagram](https://www.instagram.com/hasandincer44/)
+- [Instagram](https://www.instagram.com/hasandincer.tr/)
 
 ## Yayınevi İletişim
 
