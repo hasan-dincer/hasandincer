@@ -8,14 +8,23 @@ draft: false
 
 # Bölüm 1 — Çorak Gönüllerde Aşk ölüm getirir gülüm...
 
-Şimdi başka bir acıyla dağlanıyordu yürekler ve o acı içerisinde gözyaşı döküyordu eş dost, akraba ve insanlık…
-Ve bu toplumda kadın olmanın bedeliydi akıttıkları gözyaşı.
-Yine bir erkeğin vicdanında kadına biçilen sondu gözlerden akan her damla.
-Çorak gönüllere düşen bu aşk tohumu, sadece ölüm getirmişti Suluca’ya.
-Yine vicdan yoksulu bir gönül, ölüm saçarak çare aramıştı kendine.
-Acıya boğmuştu her yanı, o dertli yüreklere dert ekerek.
-Masumiyete, dilsiz cellat olmuştu yine biri…
-Kâbus, gecenin karanlığını fırsat bilmiş;
-Saplamıştı hançerini şafağın bağrına…
-Hoyrat eli, bir gülü yine dalından yolmuş, bahara hasret koymuştu…
-Bir kuzu kör bıçağın altında yine canından olmuştu…
+Çorak gönüllerde aşk ölüm getirir gülüm.<br>
+Toprağa düşen bir damla gözyaşı, bir avuç inci misali<br>
+Ziyan olur gider o gönüle düşen aşk.<br>
+Kıymetini bilmez yârinin; incinir, incitir…<br>
+Muhabbetten demini almayınca da çiğ kalır özü.<br>
+Ve ziyan olur gider o gönüle düşen aşk.<br>
+Hele bir sor ehline, bu âlemde ölüm müdür aşkın karşılığı?<br>
+Yoksa zulüm mü?<br>
+Mizan eylese bulunmaz hâl ehlinin nazarında bu sevdanın kıymeti.<br>
+Hâlden bilmeyen ne bilsin aşkı ne bilsin sevdayı?<br>
+Herkesin dilinde susuz toprak diye anılır çorak gönül.<br>
+Arif olan bilir, o gönül yeşertmez o tohumu.<br>
+Sarıp sarmalar; kör eder, kul eder âdemoğlunu.<br>
+Ve ziyan olur gider o gönüle düşen aşk.<br>
+Leyla utanır, Mecnun utanır, çöl utanır…<br>
+Âleme sultan olsa nafile<br>
+Göz görür, gönül söyler de dil utanır.<br>
+Ve ziyan olur gider, o gönüle düşen aşk.<br>
+Çünkü sonu zulümdür…<br>
+Sonu ölüm!<br>

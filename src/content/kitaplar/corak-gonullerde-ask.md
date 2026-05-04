@@ -5,26 +5,20 @@ yayinTarihi: 2026-05-18
 yayinevi: "Müptela Yayınevi"
 kapakGorsel: "/images/corak-gonullerde-ask-cover.jpeg"
 ozet: |
-  Çorak gönüllerde aşk ölüm getirir gülüm.
+  “Çorak gönüllerde aşk ölüm getirir gülüm.
   Toprağa düşen bir damla gözyaşı, bir avuç inci misali
   Ziyan olur gider o gönüle düşen aşk.
   Kıymetini bilmez yârinin; incinir, incitir…
   Muhabbetten demini almayınca da çiğ kalır özü.
-  Ve ziyan olur gider o gönüle düşen aşk.
-  Hele bir sor ehline, bu âlemde ölüm müdür aşkın karşılığı?
-  Yoksa zulüm mü?
-  Mizan eylese bulunmaz hâl ehlinin nazarında bu sevdanın kıymeti.
-  Hâlden bilmeyen ne bilsin aşkı ne bilsin sevdayı?
-  Herkesin dilinde susuz toprak diye anılır çorak gönül.
-  Arif olan bilir, o gönül yeşertmez o tohumu.
-  Sarıp sarmalar; kör eder, kul eder âdemoğlunu.
-  Ve ziyan olur gider o gönüle düşen aşk.
-  Leyla utanır, Mecnun utanır, çöl utanır…
-  Âleme sultan olsa nafile
-  Göz görür, gönül söyler de dil utanır.
-  Ve ziyan olur gider, o gönüle düşen aşk.
-  Çünkü sonu zulümdür…
-  Sonu ölüm!
+  Ve ziyan olur gider o gönüle düşen aşk.”
+
+  Malatya’nın Arguvan ilçesi bozkırında bir köy… Sırtını Abdulvahap Dağı’na vermiş, ovaya yüzünü dönmüş bu kadim toprakların bağrında nice sırlar, nice acılar saklıdır kimbilir… İnsanın yüreğine sığmayıp taşan; gizlemek isteyip de gizleyemediği, unutmak isteyip de unutamadığı, bilenin, duyanın içinde boğulup, yitip gittiği, Abdulvahap Dağı kadar büyük acılar… 
+
+  Genç adamın yüreğine düşen aşk, tüm benliğini esir almış, kör etmiş, kul etmiştir onu. Yaşadığı tutkunun gölgesinde çırpınıp duran ve karanlığın içinde kaybolan vicdan yoksulu o gönül, ölüm saçarak çare aramıştır kendine. An gelir, kurtulduğunu düşünür ama alın yazısı gibidir gerçekler; ne kadar kaçsa da kurtulamaz…
+  Bu roman, yalnızca kuşatılmış hayatların değil; suskun bırakılmış kadınların, bastırılmış arzuların ve törenin görünmeyen yüzünün hikâyesi. 
+  Hasan Dinçer Çorak Gönüllerde Aşk kitabında kuşaktan kuşağa fısıldanan, yaşanmışlıklara dayalı bir hikâyeye konuk ediyor okurlarını.
+
+
 tur: "Roman"
 satinAlmaLinkleri:
   - platform: "Müptela Yayınları"
