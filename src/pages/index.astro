@@ -9,7 +9,7 @@ const kitaplar = (await getCollection('kitaplar'))
 ---
 
 <BaseLayout title="Ana Sayfa" description="Hasan Dinçer — Yazar, roman ve edebiyat dünyası.">
-  <h1 style="text-align: center; margin-top: 2rem;">Hasan Dinçer</h1>
+  <h1 class="author-title">Hasan Dinçer</h1>
   <div class="home-background" style={`background-image: url('${getUrl('images/iki_kitap_arka_fon.png')}');`}></div>
   
 
@@ -34,14 +34,26 @@ const kitaplar = (await getCollection('kitaplar'))
 </BaseLayout>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+  .author-title {
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    font-weight: 400;
+    color: var(--color-accent);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
   .home-background {
     position: fixed;
     top: 120px;
     left: 50%;
     transform: translateX(-50%);
-    width: 65%;
+    width: 100vw;
     height: calc(120vh - 120px);
-    background-size: auto;
+    background-size: 65%;
     background-position: center top;
     background-repeat: no-repeat;
     z-index: -1;
