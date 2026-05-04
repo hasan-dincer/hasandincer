@@ -8,7 +8,7 @@ ozet: "Bir çocuğun gözünden savaşın ve göçün acı hikayesi."
 tur: "Roman"
 satinAlmaLinkleri:
   - platform: "Kitapyurdu"
-    url: "https://www.kitapyurdu.com/arama/varsayilan?keyword=Bizi+Unutma+Soffiya"
+    url: "https://www.kitapyurdu.com/kitap/bizi-unutma-soffiya/693883.html?filter_name=bizi+unutma+soffiya"
   - platform: "Amazon"
     url: "https://www.amazon.com.tr/Bizi-Unutma-Soffiya-Hasan-Din%C3%A7er/dp/6052262877"
   - platform: "BKM Kitap"
