@@ -3,7 +3,7 @@ baslik: "Bizi Unutma Soffiya"
 yazar: "Hasan Dinçer"
 yayinTarihi: 2024-09-25
 yayinevi: "La Kitap"
-kapakGorsel: "/images/bizi_unutma_soffiya_cover.jpg"
+kapakGorsel: "/images/soffiya_on_kapak_hd.jpeg"
 ozet: |
   Doğduğu topraklara, evlerine, oynadığı bahçelere, çocukluğuna, acılarına dokunur gibi, parmağını Amasya’nın üzerinde gezdirdi gezdirdi, sonra öylece durdu. Gözünden süzülen bir damla yaş haritanın üzerine damladı ve bana fark ettirmemek için aceleyle kolunun yeniyle sildi. Ben de görmezlikten geldim zaten, yanağından süzülüp haritaya düşen damlayı. “Amasya buraya çok mu uzak?” dedi.
   “Arabayla sekiz on saat sürer herhâlde…” diye cevapladım.
