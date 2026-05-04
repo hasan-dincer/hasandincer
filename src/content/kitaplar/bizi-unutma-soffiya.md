@@ -37,15 +37,15 @@ Zemheri gibi çöktü üzerime, amansız yakalandım dokuz yaşındaki çocuk y�
 ### Kitaptan Kareler
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-  <img src="/public/images/foto10.jpeg" alt="Bizi Unutma Soffiya - 1" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto11.jpeg" alt="Bizi Unutma Soffiya - 2" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto12.jpeg" alt="Bizi Unutma Soffiya - 3" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto13.jpeg" alt="Bizi Unutma Soffiya - 4" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto14.jpeg" alt="Bizi Unutma Soffiya - 5" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto15.jpeg" alt="Bizi Unutma Soffiya - 6" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto16.jpeg" alt="Bizi Unutma Soffiya - 7" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto17.jpeg" alt="Bizi Unutma Soffiya - 8" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto18.jpeg" alt="Bizi Unutma Soffiya - 9" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto19.jpeg" alt="Bizi Unutma Soffiya - 10" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-  <img src="/public/images/foto20.jpeg" alt="Bizi Unutma Soffiya - 11" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto10.jpeg" alt="Bizi Unutma Soffiya - 1" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto11.jpeg" alt="Bizi Unutma Soffiya - 2" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto12.jpeg" alt="Bizi Unutma Soffiya - 3" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto13.jpeg" alt="Bizi Unutma Soffiya - 4" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto14.jpeg" alt="Bizi Unutma Soffiya - 5" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto15.jpeg" alt="Bizi Unutma Soffiya - 6" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto16.jpeg" alt="Bizi Unutma Soffiya - 7" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto17.jpeg" alt="Bizi Unutma Soffiya - 8" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto18.jpeg" alt="Bizi Unutma Soffiya - 9" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto19.jpeg" alt="Bizi Unutma Soffiya - 10" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  <img src="/images/foto20.jpeg" alt="Bizi Unutma Soffiya - 11" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
 </div>
