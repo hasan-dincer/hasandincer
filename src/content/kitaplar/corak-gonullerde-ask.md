@@ -4,7 +4,27 @@ yazar: "Hasan Dinçer"
 yayinTarihi: 2026-05-18
 yayinevi: "Müptela Yayınevi"
 kapakGorsel: "/images/corak-gonullerde-ask-cover.jpeg"
-ozet: "Bazı aşklar filizlenmez; toprağı çoraktır, kalbi yaralıdır."
+ozet: |
+  Çorak gönüllerde aşk ölüm getirir gülüm.
+  Toprağa düşen bir damla gözyaşı, bir avuç inci misali
+  Ziyan olur gider o gönüle düşen aşk.
+  Kıymetini bilmez yârinin; incinir, incitir…
+  Muhabbetten demini almayınca da çiğ kalır özü.
+  Ve ziyan olur gider o gönüle düşen aşk.
+  Hele bir sor ehline, bu âlemde ölüm müdür aşkın karşılığı?
+  Yoksa zulüm mü?
+  Mizan eylese bulunmaz hâl ehlinin nazarında bu sevdanın kıymeti.
+  Hâlden bilmeyen ne bilsin aşkı ne bilsin sevdayı?
+  Herkesin dilinde susuz toprak diye anılır çorak gönül.
+  Arif olan bilir, o gönül yeşertmez o tohumu.
+  Sarıp sarmalar; kör eder, kul eder âdemoğlunu.
+  Ve ziyan olur gider o gönüle düşen aşk.
+  Leyla utanır, Mecnun utanır, çöl utanır…
+  Âleme sultan olsa nafile
+  Göz görür, gönül söyler de dil utanır.
+  Ve ziyan olur gider, o gönüle düşen aşk.
+  Çünkü sonu zulümdür…
+  Sonu ölüm!
 tur: "Roman"
 satinAlmaLinkleri:
   - platform: "Müptela Yayınları"
