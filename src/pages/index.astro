@@ -10,10 +10,12 @@ const kitaplar = (await getCollection('kitaplar'))
 
 <BaseLayout title="Ana Sayfa" description="Hasan Dinçer — Yazar, roman ve edebiyat dünyası.">
   <h1 class="author-title">Hasan Dinçer</h1>
-  <div class="home-background" style={`background-image: url('${getUrl('images/iki_kitap_arka_fon.png')}');`}></div>
+  <div class="home-image-container">
+    <img src={getUrl('images/iki_kitap_arka_fon.png')} alt="Hasan Dinçer" class="home-image" />
+  </div>
   
 
-  <section class="page-container" style="margin-top: 58rem;">
+  <section class="page-container">
     
     <div class="card-grid">
       {kitaplar.map((kitap) => (
@@ -46,23 +48,22 @@ const kitaplar = (await getCollection('kitaplar'))
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
   }
 
-  .home-background {
-    position: fixed;
-    top: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    height: calc(120vh - 120px);
-    background-size: 65%;
-    background-position: center top;
-    background-repeat: no-repeat;
-    z-index: -1;
+  .home-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
     pointer-events: none;
+  }
+
+  .home-image {
+    width: 65%;
+    height: auto;
     opacity: 0.8;
   }
 
   /* Koyu temada görselin fazla parlamaması için ekstra karartma */
-  :global(.dark) .home-background {
+  :global(.dark) .home-image {
     opacity: 0.1;
   }
 </style>
