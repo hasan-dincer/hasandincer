@@ -11,16 +11,10 @@ const kitaplar = (await getCollection('kitaplar'))
 <BaseLayout title="Ana Sayfa" description="Hasan Dinçer — Yazar, roman ve edebiyat dünyası.">
   <h1 style="text-align: center; margin-top: 2rem;">Hasan Dinçer</h1>
   <div class="home-background" style={`background-image: url('${getUrl('images/iki_kitap_arka_fon.png')}');`}></div>
-  <section class="hero">
-    
-    <hr class="hero-divider" />
-    <p class="hero-subtitle">
-      
-    </p>
-  </section>
+  
 
-  <section class="page-container">
-    <h2 class="section-title" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); border-bottom-color: rgba(255,255,255,0.3); text-align: center; max-width: fit-content; margin-left: auto; margin-right: auto;">Kitaplar</h2>
+  <section class="page-container" style="margin-top: 32rem;">
+    
     <div class="card-grid">
       {kitaplar.map((kitap) => (
         <a href={getUrl(`kitaplar/${kitap.slug}`)} class="card" id={`kitap-${kitap.slug}`}>
@@ -42,12 +36,12 @@ const kitaplar = (await getCollection('kitaplar'))
 <style>
   .home-background {
     position: fixed;
-    top: 160px;
+    top: 120px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100vw;
-    height: calc(100vh - 160px);
-    background-size: contain;
+    width: 120vw;
+    height: calc(120vh - 120px);
+    background-size: auto;
     background-position: center top;
     background-repeat: no-repeat;
     z-index: -1;
