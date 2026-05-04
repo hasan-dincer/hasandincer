@@ -12,11 +12,15 @@ export interface Props {
 
 const {
   title,
-  description = 'Hasan Dinçer — Yazar, Roman, Edebiyat',
+  description: rawDescription,
   image = '/favicon.svg',
   type = 'website',
   bookData,
 } = Astro.props;
+
+// Strip HTML tags for clean meta descriptions
+const defaultDesc = 'Hasan Dinçer — Yazar, Roman, Edebiyat';
+const description = rawDescription ? rawDescription.replace(/<[^>]*>?/gm, '') : defaultDesc;
 
 const authorName = 'Hasan Dinçer';
 const pageTitle = `${title} — ${authorName}`;

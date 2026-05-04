@@ -22,7 +22,9 @@ const kitaplar = (await getCollection('kitaplar'))
         <a href={getUrl(`kitaplar/${kitap.slug}`)} class="card" id={`kitap-${kitap.slug}`}>
           <span class="card-meta">{kitap.data.tur}</span>
           <h3 class="card-title">{kitap.data.baslik}</h3>
-          {kitap.data.ozet && <p class="card-summary">{kitap.data.ozet}</p>}
+          {kitap.data.ozet && (
+                <p class="card-summary" set:html={kitap.data.ozet}></p>
+              )}
           <div class="card-footer">
             {kitap.data.yayinevi && <span>{kitap.data.yayinevi}</span>}
             {kitap.data.yayinTarihi && (

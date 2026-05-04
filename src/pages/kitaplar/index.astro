@@ -62,7 +62,7 @@ for (const bolum of tumBolumler) {
               </div>
 
               {kitap.data.ozet && (
-                <p class="book-description">{kitap.data.ozet}</p>
+                <p class="book-description" set:html={kitap.data.ozet}></p>
               )}
 
               {/* Sample chapter links */}
@@ -217,6 +217,7 @@ for (const bolum of tumBolumler) {
     color: var(--color-text-muted);
     line-height: 1.8;
     margin-bottom: 0;
+    white-space: pre-line;
   }
 
   /* ── Sample chapter links ── */
