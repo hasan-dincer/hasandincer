@@ -45,7 +45,7 @@ const kitaplar = (await getCollection('kitaplar'))
 
   .hero-container {
     position: relative;
-    max-width: var(--max-width);
+    max-width: 65%;
     margin: 0 auto;
   }
 
@@ -57,21 +57,34 @@ const kitaplar = (await getCollection('kitaplar'))
     position: absolute;
     right: 5%;
     top: 0.5rem; /* Başlıkla aynı hizalarda başlaması için */
-    width: 120px; /* Genişliği buradan ayarlayabilirsiniz */
+    width: 200px; /* Genişliği buradan ayarlayabilirsiniz */
     height: auto;
-    margin-right: -1rem;
+    margin-right: -2rem;
     opacity: 0.9; /* Saydamlık (0 ile 1 arası, 1=tam görünür, 0=tam saydam) */
     z-index: 10; /* Alttaki resmin üstüne çıkması için */
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   }
 
+  @media (max-width: 1024px) {
+    .hero-side-image {
+      margin-right: 0;
+      width: 140px;
+      right: 1rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero-side-image {
       /* Mobilde ekran küçük olduğu için resmi küçültebilir veya gizleyebiliriz. Şu an küçülttüm: */
-      width: 120px;
+      width: 100px;
       right: 5%;
       top: 1rem;
+      margin-right: -1rem;
+    }
+
+    .home-title{
+      margin-left: 0;
     }
   }
 
