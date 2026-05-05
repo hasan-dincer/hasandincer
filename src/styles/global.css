@@ -375,19 +375,19 @@ main {
 
 .chapter-number {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-accent);
   min-width: 2.5rem;
 }
 
 .chapter-title {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 .chapter-summary {
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   color: var(--color-text-muted);
   margin-top: var(--space-xs);
   white-space: pre-line;
