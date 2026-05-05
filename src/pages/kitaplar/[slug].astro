@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getUrl } from '../../utils/url';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export async function getStaticPaths() {
   const kitaplar = await getCollection('kitaplar');
@@ -19,6 +21,21 @@ const tumBolumler = await getCollection('bolumler');
 const bolumler = tumBolumler
   .filter((b) => b.data.kitapSlug === kitap.slug && !b.data.draft)
   .sort((a, b) => a.data.bolumNo - b.data.bolumNo);
+
+// Kitaba ait fotoğrafları images/{sira}/ klasöründen oku
+const kitapFotograflar: string[] = [];
+if (kitap.data.sira) {
+  const imageDir = path.join(process.cwd(), 'public', 'images', String(kitap.data.sira));
+  if (fs.existsSync(imageDir)) {
+    const allowed = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+    const files = fs.readdirSync(imageDir)
+      .filter(f => allowed.includes(path.extname(f).toLowerCase()))
+      .sort();
+    for (const file of files) {
+      kitapFotograflar.push(`/images/${kitap.data.sira}/${file}`);
+    }
+  }
+}
 ---
 
 <BaseLayout 
@@ -58,9 +75,31 @@ const bolumler = tumBolumler
       </div>
     )}
 
+    {kitapFotograflar.length > 0 && (
+      <section class="book-gallery-section">
+        <h2 class="section-title">Kitaptan Görüntüler</h2>
+        <div class="book-gallery">
+          {kitapFotograflar.map((src, i) => (
+            <button
+              class="gallery-thumb-btn"
+              data-src={src}
+              aria-label={`${kitap.data.baslik} - Fotoğraf ${i + 1}`}
+            >
+              <img
+                src={src}
+                alt={`${kitap.data.baslik} - Fotoğraf ${i + 1}`}
+                class="gallery-thumb"
+                loading="lazy"
+              />
+            </button>
+          ))}
+        </div>
+      </section>
+    )}
+
     {bolumler.length > 0 && (
       <section style="margin-top: var(--space-2xl);">
-        <h2 class="section-title">Bölümler</h2>
+        <h2 class="section-title">Kitaptan Kesitler</h2>
         <ul class="chapter-list">
           {bolumler.map((bolum) => (
             <li class="chapter-item">
@@ -88,57 +127,53 @@ const bolumler = tumBolumler
 </BaseLayout>
 
 <script>
-  const images = document.querySelectorAll('.prose img');
   const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
   const closeBtn = document.querySelector('.close-btn');
 
-  if (images.length > 0 && lightbox && lightboxImg && closeBtn) {
-    document.body.appendChild(lightbox);
+  // Lightbox'ı body'e taşı — overflow:hidden olan container'lardan kaçmak için
+  if (lightbox) document.body.appendChild(lightbox);
 
-    images.forEach(img => {
-      img.style.cursor = 'pointer';
-      img.style.transition = 'transform 0.3s ease';
+  const openLightbox = (src: string) => {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.setAttribute('src', src);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
 
-      img.addEventListener('mouseenter', () => {
-        img.style.transform = 'scale(1.02)';
-      });
-      img.addEventListener('mouseleave', () => {
-        img.style.transform = 'scale(1)';
-      });
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImg) return;
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => lightboxImg.setAttribute('src', ''), 300);
+  };
 
-      img.addEventListener('click', () => {
-        const src = img.getAttribute('src');
-        if (src) {
-          lightboxImg.setAttribute('src', src);
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
+  // Prose içindeki görseller
+  document.querySelectorAll<HTMLImageElement>('.prose img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+      const src = img.getAttribute('src');
+      if (src) openLightbox(src);
     });
+  });
 
-    const closeLightbox = () => {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-      setTimeout(() => {
-        lightboxImg.setAttribute('src', '');
-      }, 300);
-    };
-
-    closeBtn.addEventListener('click', closeLightbox);
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
+  // Galeri küçük resim butonları
+  document.querySelectorAll<HTMLButtonElement>('.gallery-thumb-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = btn.dataset.src;
+      if (src) openLightbox(src);
     });
+  });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
-    });
-  }
+  closeBtn?.addEventListener('click', closeLightbox);
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox?.classList.contains('active')) closeLightbox();
+  });
 </script>
 
 <style>
@@ -237,5 +272,46 @@ const bolumler = tumBolumler
     border-color: var(--color-accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  /* Book Gallery */
+  .book-gallery-section {
+    margin-top: var(--space-2xl);
+  }
+
+  .book-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .gallery-thumb-btn {
+    all: unset;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: var(--color-surface);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .gallery-thumb-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .gallery-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+
+  .gallery-thumb-btn:hover .gallery-thumb {
+    opacity: 0.9;
   }
 </style>
