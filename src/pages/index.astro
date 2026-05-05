@@ -9,7 +9,11 @@ const kitaplar = (await getCollection('kitaplar'))
 ---
 
 <BaseLayout title="Ana Sayfa" description="Hasan Dinçer — Yazar, roman ve edebiyat dünyası.">
-  <h1 class="author-title">Hasan Dinçer</h1>
+  <div class="hero-container">
+    <h1 class="author-title">Hasan Dinçer</h1>
+    <!-- Bu resmin yolunu (src) dilediğiniz gibi değiştirebilirsiniz -->
+    <img src={getUrl('images/hasan_dincer_bio.jpeg')} alt="Hasan Dinçer" class="hero-side-image" />
+  </div>
   <div class="home-image-container">
     <img src={getUrl('images/iki_kitap_arka_fon.png')} alt="Hasan Dinçer" class="home-image" />
   </div>
@@ -38,6 +42,34 @@ const kitaplar = (await getCollection('kitaplar'))
 </BaseLayout>
 
 <style>
+
+  .hero-container {
+    position: relative;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .hero-side-image {
+    position: absolute;
+    right: 5%;
+    top: 2rem; /* Başlıkla aynı hizalarda başlaması için */
+    width: 380px; /* Genişliği buradan ayarlayabilirsiniz */
+    height: auto;
+    margin-right: -8rem;
+    opacity: 0.7; /* Saydamlık (0 ile 1 arası, 1=tam görünür, 0=tam saydam) */
+    z-index: 10; /* Alttaki resmin üstüne çıkması için */
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 768px) {
+    .hero-side-image {
+      /* Mobilde ekran küçük olduğu için resmi küçültebilir veya gizleyebiliriz. Şu an küçülttüm: */
+      width: 120px;
+      right: 5%;
+      top: 1rem;
+    }
+  }
 
   .home-image-container {
     width: 100%;
