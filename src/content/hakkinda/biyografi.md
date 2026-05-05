@@ -10,7 +10,7 @@ Hasan Dinçer, Türk edebiyatının çağdaş seslerinden biri. Anadolu'nun kül
 
 ## Eğitim ve Kariyer
 
-Edebiyat tutkusu erken yaşlarda başladı. Üniversite yıllarında ilk öykülerini yayımladı ve kısa sürede edebiyat çevrelerinde tanındı.
+Hasan Dinçer, 1978 yılında Malatya’nın Arguvan ilçesinde doğdu. İlk ve ortaöğrenimini Malatya’nın Arapgir ilçesinde, lise öğrenimini ise Mersin’in Tarsus ilçesinde tamamladı. 1997 yılında Atatürk Üniversitesi Meslek Yüksekokulunu, 2010 yılında ise Anadolu Üniversitesi İktisat Fakültesi Kamu Yönetimi Bölümünü bitirdi. İlk romanı Bizi Unutma Soffiya, Ankara La Yayınlarından (2024); ikinci romanı Çorak Gönüllerde Aşk, Müptela Yayınlarından (2026) yayımlandı. Hâlen bir kamu kurumunda görev yapan Hasan Dinçer, evli ve iki çocuk babasıdır. İstanbul’da yaşamaktadır.
 
 ## Edebi Yaklaşım
 
