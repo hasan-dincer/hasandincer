@@ -73,7 +73,7 @@ html {
 body {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: 1.7;
@@ -271,7 +271,7 @@ main {
 /* ---------- Card Grid ---------- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 25rem));
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 30rem));
   justify-content: center;
   gap: var(--space-xl);
 }
@@ -297,7 +297,7 @@ main {
 
 .card-meta {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -306,14 +306,14 @@ main {
 
 .card-title {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   font-weight: 600;
   margin-bottom: var(--space-sm);
   line-height: 1.3;
 }
 
 .card-summary {
-  font-size: 0.92rem;
+  font-size: 1.2rem;
   color: var(--color-text-muted);
   line-height: 1.7;
   flex: 1;
@@ -325,7 +325,7 @@ main {
   margin-top: var(--space-lg);
   padding-top: var(--space-md);
   border-top: 1px solid var(--color-border-light);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   display: flex;
   gap: var(--space-md);
@@ -456,7 +456,7 @@ main {
 .prose {
   max-width: var(--content-width);
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   line-height: 1.9;
 }
 

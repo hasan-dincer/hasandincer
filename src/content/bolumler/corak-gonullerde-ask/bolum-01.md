@@ -6,7 +6,7 @@ ozet: "Çorak gönüllere düşen bu aşk tohumu, sadece ölüm getirmişti Sulu
 draft: false
 ---
 
-# Bölüm 1 — Çorak Gönüllerde Aşk ölüm getirir gülüm...
+# Çorak Gönüllerde Aşk ölüm getirir gülüm...
 
 Çorak gönüllerde aşk ölüm getirir gülüm.<br>
 Toprağa düşen bir damla gözyaşı, bir avuç inci misali<br>
