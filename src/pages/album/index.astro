@@ -5,8 +5,8 @@ import { getUrl } from '../../utils/url';
 const title = "Albüm | Hasan Dinçer";
 const description = "Hasan Dinçer'in hayatından kareler, imza günleri ve etkinlik fotoğrafları.";
 
-// Generate array of photos 1 to 26, excluding 10 to 20
-const photos = Array.from({ length: 26 }, (_, i) => i + 1)
+// Generate array of photos 1 to 27, excluding 10 to 20
+const photos = Array.from({ length: 27 }, (_, i) => i + 1)
   .filter(num => num < 10 || num > 20)
   .map(num => getUrl(`images/foto${num}.jpeg`));
 ---

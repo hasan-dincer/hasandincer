@@ -1,12 +1,12 @@
 ---
-baslik: "Edebiyat Söyleşisi — Roman ve Bellek"
-tarih: 2025-02-10
-konum: "Ankara, Çankaya - Kültür Merkezi"
-aciklama: "Roman yazımında bellek ve mekân ilişkisi üzerine bir söyleşi."
+baslik: "Kitap İmza ve Tanıtım Programı"
+tarih: 2024-10-26
+konum: "Ataşehir, İstanbul - İnal Aydınoğlu Kültür Merkezi"
+aciklama: "Bizi Unutma Soffiya romanı üzerine söyleşi ve imza günü"
 tur: "soylesi"
 draft: false
 ---
 
-# Edebiyat Söyleşisi — Roman ve Bellek
+# Kitap İmza ve Tanıtım Programı
 
-Roman yazımında bellek ve mekân ilişkisi üzerine bir söyleşi. Moderatör eşliğinde okurların sorularını yanıtlayacağız.
+Bizi Unutma Soffiya romanı üzerine söyleşi ve imza günü. Moderatör eşliğinde okurların sorularını yanıtlayacağız. Adres:

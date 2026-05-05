@@ -317,6 +317,7 @@ main {
   color: var(--color-text-muted);
   line-height: 1.7;
   flex: 1;
+  white-space: pre-line;
 }
 
 .card-footer {
@@ -378,6 +379,7 @@ main {
   font-size: 0.85rem;
   color: var(--color-text-muted);
   margin-top: var(--space-xs);
+  white-space: pre-line;
 }
 
 /* ---------- Event List ---------- */
