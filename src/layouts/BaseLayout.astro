@@ -58,7 +58,12 @@ const {
     <header class="site-header">
       <div class="header-inner">
         <a href={getUrl('/')} class="site-logo">Hasan Dinçer</a>
-        <nav class="site-nav">
+        <button class="nav-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <nav class="site-nav" id="site-nav">
           <a href={getUrl('/')}>Ana Sayfa</a>
           <a href={getUrl('kitaplar')}>Kitaplar</a>
           <a href={getUrl('etkinlikler')}>Etkinlikler</a>
@@ -69,6 +74,16 @@ const {
         </nav>
       </div>
     </header>
+
+    <script>
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      toggle?.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        nav?.classList.toggle('nav-open');
+      });
+    </script>
 
     <main>
       <div class="page-transition">
