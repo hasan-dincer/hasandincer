@@ -35,7 +35,9 @@ const bolumler = tumBolumler
     <a href={getUrl('kitaplar')} class="back-link">← Kitaplar</a>
 
     <div class="prose">
-      <Content />
+      {kitap.data.ozet && (
+        <p class="book-description" set:html={kitap.data.ozet}></p>
+      )}
     </div>
 
     {kitap.data.yayinevi && (
@@ -140,6 +142,10 @@ const bolumler = tumBolumler
 </script>
 
 <style>
+
+  .book-description{
+    white-space: pre-line;
+  }
   /* Lightbox Styles */
   .lightbox {
     position: fixed;
