@@ -2,7 +2,7 @@
 baslik: "Çorak Gönüllerde Aşk"
 yazar: "Hasan Dinçer"
 yayinTarihi: 2026-05-18
-yayinevi: "Müptela Yayınevi"
+yayinevi: "Müptela Yayınları"
 kapakGorsel: "/images/corak-gonullerde-ask-cover.jpeg"
 ozet: |
   “<i>Çorak gönüllerde aşk ölüm getirir gülüm.
