@@ -14,8 +14,7 @@ Ziyan olur gider o gönüle düşen aşk.<br>
 Kıymetini bilmez yârinin; incinir, incitir…<br>
 Muhabbetten demini almayınca da çiğ kalır özü.<br>
 Ve ziyan olur gider o gönüle düşen aşk.<br>
-Hele bir sor ehline, bu âlemde ölüm müdür aşkın karşılığı?<br>
-Yoksa zulüm mü?<br>
+Hele bir sor ehline, bu âlemde ölüm müdür aşkın karşılığı? Yoksa zulüm mü?<br>
 Mizan eylese bulunmaz hâl ehlinin nazarında bu sevdanın kıymeti.<br>
 Hâlden bilmeyen ne bilsin aşkı ne bilsin sevdayı?<br>
 Herkesin dilinde susuz toprak diye anılır çorak gönül.<br>
