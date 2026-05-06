@@ -1,14 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getUrl } from '../../utils/url';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const title = "Albüm | Hasan Dinçer";
 const description = "Hasan Dinçer'in hayatından kareler, imza günleri ve etkinlik fotoğrafları.";
 
-// Generate array of photos 1 to 27, excluding 10 to 20
-const photos = Array.from({ length: 27 }, (_, i) => i + 1)
-  .filter(num => num < 10 || num > 20)
-  .map(num => getUrl(`images/foto${num}.jpeg`));
+// public/images/album klasöründeki fotoğrafları oku
+const albumDir = path.join(process.cwd(), 'public', 'images', 'album');
+const validExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+
+let photos: string[] = [];
+try {
+  photos = fs
+    .readdirSync(albumDir)
+    .filter((f) => validExts.includes(path.extname(f).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    .map((f) => getUrl(`images/album/${f}`));
+} catch {
+  photos = [];
+}
+
 ---
 
 <BaseLayout title={title} description={description}>
