@@ -22,7 +22,13 @@ ozet: |
 tur: "Roman"
 satinAlmaLinkleri:
   - platform: "Müptela Yayınları"
-    url: "https://www.ithakiyayingrubu.com/corak-gonullerde-ask.aspx"
+    url: "https://www.ithakiyayingrubu.com/corak-gonullerde-ask"
+  - platform: "Amazon"
+    url: "https://www.amazon.com.tr/%C3%87orak-G%C3%B6n%C3%BCllerde-A%C5%9Fk-Hasan-Din%C3%A7er/dp/6255939189"
+  - platform: "BKM Kitap"
+    url: "https://www.bkmkitap.com/corak-gonullerde-ask"
+  - platform: "Kitapyurdu"
+    url: "https://www.kitapyurdu.com/kitap/corak-gonullerde-ask/753465.html"
 spitin: false
 sira: 2
 draft: false
