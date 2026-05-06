@@ -15,33 +15,110 @@ const turLabels: Record<string, string> = {
   'diger': 'Etkinlik',
 };
 
-const etkinlikler = (await getCollection('etkinlikler'))
-  .filter((e) => !e.data.draft)
-  .sort((a, b) => b.data.tarih.getTime() - a.data.tarih.getTime());
+const bugun = new Date();
+bugun.setHours(0, 0, 0, 0);
+
+const tumEtkinlikler = (await getCollection('etkinlikler'))
+  .filter((e) => !e.data.draft);
+
+const onumüzdekiler = tumEtkinlikler
+  .filter((e) => e.data.tarih >= bugun)
+  .sort((a, b) => a.data.tarih.getTime() - b.data.tarih.getTime()); // yakın tarih önce
+
+const gecmisler = tumEtkinlikler
+  .filter((e) => e.data.tarih < bugun)
+  .sort((a, b) => b.data.tarih.getTime() - a.data.tarih.getTime()); // en yeni önce
 ---
 
 <BaseLayout title="Etkinlikler" description="Hasan Dinçer'in katıldığı etkinlikler, imza günleri ve söyleşiler.">
   <section class="page-container">
     <h1 class="section-title">Etkinlikler</h1>
 
-    <div class="event-list">
-      {etkinlikler.map((etkinlik) => {
-        const tarih = etkinlik.data.tarih;
-        return (
-          <div class="event-item" id={`etkinlik-${etkinlik.slug}`}>
-            <div class="event-date-badge">
-              <span class="day">{tarih.getDate()}</span>
-              <span class="month">{aylar[tarih.getMonth()]} {tarih.getFullYear()}</span>
+    <!-- Önümüzdeki Etkinlikler -->
+    <h2 class="subsection-title upcoming">Önümüzdeki Etkinlikler</h2>
+    {onumüzdekiler.length > 0 ? (
+      <div class="event-list">
+        {onumüzdekiler.map((etkinlik) => {
+          const tarih = etkinlik.data.tarih;
+          return (
+            <div class="event-item upcoming-item" id={`etkinlik-${etkinlik.slug}`}>
+              <div class="event-date-badge">
+                <span class="day">{tarih.getDate()}</span>
+                <span class="month">{aylar[tarih.getMonth()]} {tarih.getFullYear()}</span>
+              </div>
+              <div class="event-info">
+                <span class="event-badge">{turLabels[etkinlik.data.tur] ?? etkinlik.data.tur}</span>
+                <h3>{etkinlik.data.baslik}</h3>
+                {etkinlik.data.konum && <p class="event-location">📍 {etkinlik.data.konum}</p>}
+                {etkinlik.data.aciklama && <p class="event-description">{etkinlik.data.aciklama}</p>}
+              </div>
             </div>
-            <div class="event-info">
-              <span class="event-badge">{turLabels[etkinlik.data.tur] ?? etkinlik.data.tur}</span>
-              <h3>{etkinlik.data.baslik}</h3>
-              {etkinlik.data.konum && <p class="event-location">📍 {etkinlik.data.konum}</p>}
-              {etkinlik.data.aciklama && <p class="event-description">{etkinlik.data.aciklama}</p>}
+          );
+        })}
+      </div>
+    ) : (
+      <p class="empty-message">Şu an planlanmış bir etkinlik bulunmuyor.</p>
+    )}
+
+    <!-- Geçmiş Etkinlikler -->
+    <h2 class="subsection-title past">Geçmiş Etkinlikler</h2>
+    {gecmisler.length > 0 ? (
+      <div class="event-list past-list">
+        {gecmisler.map((etkinlik) => {
+          const tarih = etkinlik.data.tarih;
+          return (
+            <div class="event-item past-item" id={`etkinlik-${etkinlik.slug}`}>
+              <div class="event-date-badge">
+                <span class="day">{tarih.getDate()}</span>
+                <span class="month">{aylar[tarih.getMonth()]} {tarih.getFullYear()}</span>
+              </div>
+              <div class="event-info">
+                <span class="event-badge">{turLabels[etkinlik.data.tur] ?? etkinlik.data.tur}</span>
+                <h3>{etkinlik.data.baslik}</h3>
+                {etkinlik.data.konum && <p class="event-location">📍 {etkinlik.data.konum}</p>}
+                {etkinlik.data.aciklama && <p class="event-description">{etkinlik.data.aciklama}</p>}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    ) : (
+      <p class="empty-message">Henüz geçmiş etkinlik bulunmuyor.</p>
+    )}
   </section>
 </BaseLayout>
+
+<style>
+  .subsection-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid currentColor;
+  }
+
+  .subsection-title.upcoming {
+    color: var(--color-accent, #2a7ae2);
+    border-color: var(--color-accent, #2a7ae2);
+  }
+
+  .subsection-title.past {
+    color: var(--color-text-muted, #888);
+    border-color: var(--color-text-muted, #888);
+  }
+
+  .past-list {
+    opacity: 0.75;
+  }
+
+  .past-item .event-date-badge {
+    filter: grayscale(0.5);
+  }
+
+  .empty-message {
+    font-style: italic;
+    color: var(--color-text-muted, #888);
+    margin-bottom: 1rem;
+  }
+</style>

@@ -12,7 +12,7 @@ const kitaplar = (await getCollection('kitaplar'))
   <div class="hero-container">
     <h1 class="author-title home-title">Hasan Dinçer</h1>
     <!-- Bu resmin yolunu (src) dilediğiniz gibi değiştirebilirsiniz -->
-    <img src={getUrl('images/hasan_dincer_bio_official.jpeg')} alt="Hasan Dinçer" class="hero-side-image" />
+    <img src={getUrl('images/hasan_dincer_image.jpeg')} alt="Hasan Dinçer" class="hero-side-image" />
   </div>
   <div class="home-image-container">
     <img src={getUrl('images/iki_kitap_arka_fon_yeni.png')} alt="Hasan Dinçer" class="home-image" />
@@ -63,7 +63,10 @@ const kitaplar = (await getCollection('kitaplar'))
     opacity: 1; /* Saydamlık (0 ile 1 arası, 1=tam görünür, 0=tam saydam) */
     z-index: 10; /* Alttaki resmin üstüne çıkması için */
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.12),
+      0 8px 24px rgba(0, 0, 0, 0.20),
+      0 20px 48px rgba(0, 0, 0, 0.18);
   }
 
   @media (max-width: 1024px) {

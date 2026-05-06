@@ -1,5 +1,5 @@
 ---
-baslik: "41. Uluşlararası İstanbul TÜYAP Kitap Fuarı"
+baslik: "41. Uluslararası İstanbul TÜYAP Kitap Fuarı"
 tarih: 2024-11-03
 konum: "İstanbul, TÜYAP Fuar Alanı"
 aciklama: "3 Kasım 2024 tarihinde, İstanbul TÜYAP Fuar Alanı'nda okurlarla buluşuyoruz. 4. salon / stant 428B'de buluşalım.
