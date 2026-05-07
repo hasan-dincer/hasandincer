@@ -26,9 +26,9 @@ try {
 
 <BaseLayout title={title} description={description}>
   <div class="page-container">
-    <div class="hero">
-      <h1>Albüm</h1>
-      <p class="hero-subtitle">Hayattan kareler, imza günleri ve anılar...</p>
+    <div class="hero album-hero">
+      
+      <p class="hero-subtitle album-subtitle">Hayattan kareler, imza günleri ve anılar...</p>
       <hr class="hero-divider" />
     </div>
 
@@ -97,6 +97,18 @@ try {
 </script>
 
 <style>
+
+  .album-hero{
+    margin-bottom: -5rem;
+  }
+
+  .album-subtitle{
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: -6rem;
+    
+  }
+
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

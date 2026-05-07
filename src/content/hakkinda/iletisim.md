@@ -4,9 +4,6 @@ sira: 2
 draft: false
 ---
 
-# İletişim
-
-Hasan Dinçer ile iletişime geçmek için aşağıdaki kanalları kullanabilirsiniz.
 
 ## E-posta
 
@@ -18,5 +15,7 @@ Hasan Dinçer ile iletişime geçmek için aşağıdaki kanalları kullanabilirs
 - [Instagram](https://www.instagram.com/hasandincer.tr/)
 
 ## Yayınevi İletişim
+- [Müptela Yayınları](https://www.ithakiyayingrubu.com/muptela-yayinlari)
+- [La Kitap](https://www.lakitap.com/)
 
 Telif hakları ve yayın teklifleri için yayıneviniz ile doğrudan iletişime geçebilirsiniz.

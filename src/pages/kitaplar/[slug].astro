@@ -53,6 +53,7 @@ if (kitap.data.sira) {
 
     <div class="prose">
       {kitap.data.ozet && (
+        <h3 class="book-summary-title">Arka Kapak Yazısı</h3>
         <p class="book-description" set:html={kitap.data.ozet}></p>
       )}
     </div>
@@ -177,6 +178,13 @@ if (kitap.data.sira) {
 </script>
 
 <style>
+  .book-summary-title{
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-top: -1rem;
+    margin-bottom: var(--space-2xl);
+    
+  }
 
   .book-description{
     white-space: pre-line;

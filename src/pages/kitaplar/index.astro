@@ -49,21 +49,12 @@ for (const bolum of tumBolumler) {
             {/* Book details */}
             <div class="book-details">
               <div class="book-header">
-                <span class="book-genre">{kitap.data.tur}</span>
-                <h2 class="book-title">
-                  <a href={getUrl(`kitaplar/${kitap.slug}`)}>{kitap.data.baslik}</a>
-                </h2>
-                <div class="book-meta">
-                  {kitap.data.yayinevi && <span>{kitap.data.yayinevi}</span>}
-                  {kitap.data.yayinTarihi && (
-                    <span class="book-meta-sep">{kitap.data.yayinTarihi.getFullYear()}</span>
-                  )}
-                </div>
+                
+                
+                
               </div>
 
-              {kitap.data.ozet && (
-                <p class="book-description" set:html={kitap.data.ozet}></p>
-              )}
+              
 
               {/* Sample chapter links */}
               {bolumler.length > 0 && (
@@ -101,27 +92,24 @@ for (const bolum of tumBolumler) {
 <style>
   /* ── Book List ── */
   .book-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-3xl) var(--space-2xl);
-  }
-
-  /* ── Book Card (vertical layout) ── */
-  .book-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
-    align-items: stretch;
-    max-width: 24rem;
-    margin: 0 auto;
+    gap: var(--space-3xl);
+  }
+
+  /* ── Book Card (horizontal layout) ── */
+  .book-card {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-2xl);
+    align-items: flex-start;
   }
 
   /* ── Cover ── */
   .book-cover-link {
     display: block;
-    width: 100%;
-    max-width: 20rem;
-    margin: 0 auto;
+    flex-shrink: 0;
+    width: 220px;
     text-decoration: none;
     border-radius: 4px;
     overflow: hidden;
@@ -315,18 +303,14 @@ for (const bolum of tumBolumler) {
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
-    .book-list {
-      grid-template-columns: 1fr;
+    .book-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .book-cover-link {
-      max-width: 20rem;
-      margin: 0 auto;
-    }
-
-    .book-card {
-      align-items: center;
-      text-align: center;
+      width: 180px;
     }
 
     .book-meta {

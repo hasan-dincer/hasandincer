@@ -10,32 +10,32 @@
 /* ---------- CSS Custom Properties ---------- */
 :root {
   /* Colors — warm, literary palette */
-  --color-bg:        #FDFCF8;
-  --color-bg-alt:    #f5f2eb;
-  --color-surface:   #ffffff;
-  --color-text:      #2c2825;
-  --color-text-muted:#7a746d;
-  --color-accent:    #8b6f4e;
+  --color-bg: #FDFCF8;
+  --color-bg-alt: #f5f2eb;
+  --color-surface: #ffffff;
+  --color-text: #2c2825;
+  --color-text-muted: #7a746d;
+  --color-accent: #8b6f4e;
   --color-accent-light: #c4a882;
-  --color-border:    #e8e2da;
+  --color-border: #e8e2da;
   --color-border-light: #f0ece6;
   --color-header-bg: rgba(253, 252, 248, 0.92);
 
   /* Typography */
-  --font-serif:  'Cormorant Garamond', 'Georgia', serif;
-  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Times New Roman', Times, serif;
 
   /* Spacing scale */
-  --space-xs:  0.25rem;
-  --space-sm:  0.5rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2.5rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
   --space-2xl: 4rem;
   --space-3xl: 6rem;
 
   /* Layout */
-  --max-width:     72rem;
+  --max-width: 72rem;
   --content-width: 85ch;
 
   /* Transitions */
@@ -43,14 +43,14 @@
 }
 
 :root.dark {
-  --color-bg:        #1A1715;
-  --color-bg-alt:    #24201D;
-  --color-surface:   #231F1C;
-  --color-text:      #E6E1D8;
-  --color-text-muted:#A69E93;
-  --color-accent:    #BFA482;
+  --color-bg: #1A1715;
+  --color-bg-alt: #24201D;
+  --color-surface: #231F1C;
+  --color-text: #E6E1D8;
+  --color-text-muted: #A69E93;
+  --color-accent: #BFA482;
   --color-accent-light: #9B8263;
-  --color-border:    #3C352E;
+  --color-border: #3C352E;
   --color-border-light: #2D2722;
   --color-header-bg: rgba(26, 23, 21, 0.92);
 }
@@ -72,8 +72,8 @@ html {
 }
 
 body {
-  font-family: var(--font-serif);
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-weight: 450;
   font-size: 1.3rem;
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -90,10 +90,12 @@ body {
     transform: translateY(8px) rotateX(2deg);
     filter: blur(2px);
   }
+
   60% {
     opacity: 1;
     filter: blur(0);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) rotateX(0deg);
@@ -123,17 +125,31 @@ a:hover {
 }
 
 /* ---------- Typography ---------- */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-serif);
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-text);
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
-h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
-h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
-h4 { font-size: 1.15rem; }
+h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+}
+
+h4 {
+  font-size: 1.15rem;
+}
 
 .author-title {
   text-align: center;
@@ -192,7 +208,7 @@ p {
 .site-nav a {
   font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 750;
   color: var(--color-text-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -282,7 +298,7 @@ main {
 /* ---------- Card Grid ---------- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 30rem));
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 32rem));
   justify-content: center;
   gap: var(--space-xl);
 }
@@ -489,7 +505,8 @@ main {
   margin-bottom: var(--space-lg);
 }
 
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
   margin-bottom: var(--space-lg);
   padding-left: var(--space-xl);
 }
@@ -572,9 +589,11 @@ main {
 .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
+
 .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
   opacity: 0;
 }
+
 .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
