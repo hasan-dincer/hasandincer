@@ -43,32 +43,58 @@ try {
 
   <!-- Lightbox Modal -->
   <div id="lightbox" class="lightbox">
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Önceki fotoğraf">&#10094;</button>
     <div class="lightbox-content">
       <span class="close-btn">&times;</span>
       <img id="lightbox-img" src="" alt="Tam boyutlu fotoğraf" />
     </div>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Sonraki fotoğraf">&#10095;</button>
   </div>
 </BaseLayout>
 
 <script>
   const items = document.querySelectorAll('.photo-item');
   const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
   const closeBtn = document.querySelector('.close-btn');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
 
-  if (items && lightbox && lightboxImg && closeBtn) {
+  if (items && lightbox && lightboxImg && closeBtn && prevBtn && nextBtn) {
     // Sayfa geçiş animasyonu (filter/transform) sebebiyle 'position: fixed'
     // bozulmasını engellemek için lightbox'ı body'nin en altına taşıyoruz.
     document.body.appendChild(lightbox);
 
+    // Fotoğraf kaynaklarını bir dizide tut
+    const photoSources: string[] = [];
     items.forEach(item => {
+      const src = item.getAttribute('data-photo-src');
+      if (src) photoSources.push(src);
+    });
+
+    let currentIndex = 0;
+
+    const showPhoto = (index: number) => {
+      currentIndex = index;
+      lightboxImg.setAttribute('src', photoSources[currentIndex]);
+      // İlk/son fotoğrafta ok butonlarını gizle
+      prevBtn.style.display = currentIndex <= 0 ? 'none' : '';
+      nextBtn.style.display = currentIndex >= photoSources.length - 1 ? 'none' : '';
+    };
+
+    const goNext = () => {
+      if (currentIndex < photoSources.length - 1) showPhoto(currentIndex + 1);
+    };
+
+    const goPrev = () => {
+      if (currentIndex > 0) showPhoto(currentIndex - 1);
+    };
+
+    items.forEach((item, i) => {
       item.addEventListener('click', () => {
-        const src = item.getAttribute('data-photo-src');
-        if (src) {
-          lightboxImg.setAttribute('src', src);
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden'; // Arka plan kaydırmasını kapat
-        }
+        showPhoto(i);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
     });
 
@@ -81,6 +107,8 @@ try {
     };
 
     closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goPrev(); });
+    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goNext(); });
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
@@ -89,9 +117,10 @@ try {
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft') goPrev();
     });
   }
 </script>
@@ -194,13 +223,72 @@ try {
     color: var(--color-accent);
   }
 
+  /* Navigation Buttons */
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 2rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    line-height: 1;
+    padding: 0;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  }
+
+  .lightbox-nav:active {
+    transform: translateY(-50%) scale(0.92);
+  }
+
+  .lightbox-prev {
+    left: 24px;
+  }
+
+  .lightbox-next {
+    right: 24px;
+  }
+
   #lightbox-img {
-    max-width: 95vw;
+    max-width: 85vw;
     max-height: 85vh;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 600px) {
+    .lightbox-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+    .lightbox-prev {
+      left: 10px;
+    }
+    .lightbox-next {
+      right: 10px;
+    }
+    #lightbox-img {
+      max-width: 95vw;
+    }
   }
 </style>
