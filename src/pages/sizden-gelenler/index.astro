@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const yorumlar = (await getCollection('yorumlar'))
+  .filter((y) => !y.data.draft)
+  .sort((a, b) => {
+    const ta = a.data.tarih?.getTime() ?? 0;
+    const tb = b.data.tarih?.getTime() ?? 0;
+    return tb - ta; // en yeni önce
+  });
+
+const aylar = [
+  'Ocak','Şubat','Mart','Nisan','Mayıs','Haziran',
+  'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'
+];
+
+function formatTarih(d?: Date): string {
+  if (!d) return '';
+  return `${d.getDate()} ${aylar[d.getMonth()]} ${d.getFullYear()}`;
+}
+---
+
+<BaseLayout
+  title="Sizden Gelenler"
+  description="Okurların Hasan Dinçer kitapları hakkındaki yorumları ve değerlendirmeleri."
+>
+  <section class="page-container">
+    <!-- Başlık -->
+    <header class="reviews-header">
+      <h1 class="section-title">Sizden Gelenler</h1>
+      <p class="reviews-subtitle">
+        Okurlarımızın kitaplarımız hakkındaki düşünceleri, izlenimleri ve değerlendirmeleri.
+      </p>
+      <div class="ornament" aria-hidden="true">❧</div>
+    </header>
+
+    <!-- Yorumlar ızgarası -->
+    {yorumlar.length === 0 ? (
+      <p class="empty-state">Henüz yorum eklenmemiş.</p>
+    ) : (
+      <div class="reviews-grid">
+        {yorumlar.map(async (yorum) => {
+          const { Content } = await yorum.render();
+          return (
+            <article class="review-card" id={`yorum-${yorum.slug}`}>
+              <!-- Alıntı ikonu -->
+              <span class="quote-icon" aria-hidden="true">&ldquo;</span>
+
+              <!-- Yorum metni -->
+              <div class="review-body">
+                <Content />
+              </div>
+
+              <!-- Okur bilgisi -->
+              <footer class="review-footer">
+                <div class="reviewer-info">
+                  <span class="reviewer-name">{yorum.data.ad}</span>
+                  {yorum.data.sehir && (
+                    <span class="reviewer-city">— {yorum.data.sehir}</span>
+                  )}
+                </div>
+                <div class="review-meta">
+                  {yorum.data.kitap && (
+                    <span class="review-book">«{yorum.data.kitap}»</span>
+                  )}
+                  {yorum.data.tarih && (
+                    <time class="review-date" datetime={yorum.data.tarih.toISOString()}>
+                      {formatTarih(yorum.data.tarih)}
+                    </time>
+                  )}
+                </div>
+              </footer>
+            </article>
+          );
+        })}
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Sayfa başlığı ── */
+  .reviews-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .reviews-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+    line-height: 1.8;
+  }
+
+  .ornament {
+    font-size: 2.5rem;
+    color: var(--color-accent-light);
+    margin-top: var(--space-lg);
+    line-height: 1;
+    display: block;
+    opacity: 0.6;
+  }
+
+  /* ── Izgara ── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+    gap: var(--space-xl);
+  }
+
+  /* ── Yorum kartı ── */
+  .review-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    padding: var(--space-xl) var(--space-xl) var(--space-lg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
+    border-color: var(--color-accent-light);
+  }
+
+  /* Büyük açılış tırnağı */
+  .quote-icon {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    line-height: 0.6;
+    color: var(--color-accent-light);
+    opacity: 0.35;
+    position: absolute;
+    top: 1.2rem;
+    left: 1.4rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ── Yorum gövdesi ── */
+  .review-body {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: var(--color-text);
+    padding-top: var(--space-lg); /* tırnak ikonuna yer bırak */
+    flex: 1;
+  }
+
+  .review-body p {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  .review-footer {
+    border-top: 1px solid var(--color-border-light);
+    padding-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .reviewer-info {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+  }
+
+  .reviewer-name {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    letter-spacing: 0.01em;
+  }
+
+  .reviewer-city {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .review-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .review-book {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-accent);
+  }
+
+  .review-date {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+    margin-left: auto;
+  }
+
+  /* ── Boş durum ── */
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: var(--space-3xl) 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

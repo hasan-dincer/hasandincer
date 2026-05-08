@@ -69,9 +69,25 @@ const hakkinda = defineCollection({
   }),
 });
 
+/**
+ * Yorumlar — Okurlardan gelen kitap yorumları.
+ */
+const yorumlar = defineCollection({
+  type: 'content',
+  schema: z.object({
+    ad: z.string(),
+    sehir: z.string().optional(),
+    kitap: z.string().optional(),
+    puan: z.number().min(1).max(5).default(5),
+    tarih: z.date().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   kitaplar,
   bolumler,
   etkinlikler,
   hakkinda,
+  yorumlar,
 };
