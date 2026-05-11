@@ -107,9 +107,8 @@ function formatTarih(d?: Date): string {
 
   /* ── Izgara ── */
   .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-    gap: var(--space-xl);
+    columns: 2;
+    column-gap: var(--space-xl);
   }
 
   /* ── Yorum kartı ── */
@@ -123,6 +122,8 @@ function formatTarih(d?: Date): string {
     flex-direction: column;
     gap: var(--space-md);
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    break-inside: avoid;
+    margin-bottom: var(--space-xl);
   }
 
   .review-card:hover {
@@ -222,7 +223,7 @@ function formatTarih(d?: Date): string {
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .reviews-grid {
-      grid-template-columns: 1fr;
+      columns: 1;
     }
   }
 </style>
