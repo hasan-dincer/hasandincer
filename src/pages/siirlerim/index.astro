@@ -1,0 +1,315 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getUrl } from '../../utils/url';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// public/images/siir klasöründeki şiir görsellerini oku
+const siirDir = path.join(process.cwd(), 'public', 'images', 'siir');
+const validExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+
+let siirler: string[] = [];
+try {
+  siirler = fs
+    .readdirSync(siirDir)
+    .filter((f) => validExts.includes(path.extname(f).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    .map((f) => getUrl(`images/siir/${f}`));
+} catch {
+  siirler = [];
+}
+---
+
+<BaseLayout
+  title="Şiirlerim"
+  description="Hasan Dinçer'in kaleme aldığı şiirler."
+>
+  <section class="page-container">
+    <header class="poems-header">
+      <h1 class="section-title">Şiirlerim</h1>
+      <p class="poems-subtitle">
+        Kalbimden dökülen dizeler.
+      </p>
+      <div class="ornament" aria-hidden="true">❧</div>
+    </header>
+
+    {siirler.length === 0 ? (
+      <p class="empty-state">Henüz şiir eklenmemiş.</p>
+    ) : (
+      <div class="poem-grid">
+        {siirler.map((siir, index) => (
+          <div class="poem-item" data-photo-src={siir}>
+            <img src={siir} alt={`Şiir ${index + 1}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Önceki şiir">&#10094;</button>
+    <div class="lightbox-content">
+      <span class="close-btn">&times;</span>
+      <img id="lightbox-img" src="" alt="Tam boyutlu şiir görseli" />
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Sonraki şiir">&#10095;</button>
+  </div>
+</BaseLayout>
+
+<script>
+  const items = document.querySelectorAll('.poem-item');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const closeBtn = document.querySelector('.close-btn');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+
+  if (items && lightbox && lightboxImg && closeBtn && prevBtn && nextBtn) {
+    document.body.appendChild(lightbox);
+
+    const photoSources: string[] = [];
+    items.forEach(item => {
+      const src = item.getAttribute('data-photo-src');
+      if (src) photoSources.push(src);
+    });
+
+    let currentIndex = 0;
+
+    const showPhoto = (index: number) => {
+      currentIndex = index;
+      lightboxImg.setAttribute('src', photoSources[currentIndex]);
+      prevBtn.style.display = currentIndex <= 0 ? 'none' : '';
+      nextBtn.style.display = currentIndex >= photoSources.length - 1 ? 'none' : '';
+    };
+
+    const goNext = () => {
+      if (currentIndex < photoSources.length - 1) showPhoto(currentIndex + 1);
+    };
+
+    const goPrev = () => {
+      if (currentIndex > 0) showPhoto(currentIndex - 1);
+    };
+
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        showPhoto(i);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        lightboxImg.setAttribute('src', '');
+      }, 300);
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goPrev(); });
+    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goNext(); });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft') goPrev();
+    });
+  }
+</script>
+
+<style>
+  .poems-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .poems-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+    line-height: 1.8;
+  }
+
+  .ornament {
+    font-size: 2.5rem;
+    color: var(--color-accent-light);
+    margin-top: var(--space-lg);
+    line-height: 1;
+    display: block;
+    opacity: 0.6;
+  }
+
+  .poem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: var(--space-xl);
+    padding: var(--space-md) 0;
+  }
+
+  .poem-item {
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+  }
+
+  .poem-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .poem-item img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.5s ease;
+  }
+
+  .poem-item:hover img {
+    transform: scale(1.03);
+  }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: var(--space-3xl) 0;
+  }
+
+  /* Lightbox Styles */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .close-btn {
+    position: fixed;
+    top: 25px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1001;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  .close-btn:hover {
+    color: var(--color-accent);
+  }
+
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 2rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    line-height: 1;
+    padding: 0;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  }
+
+  .lightbox-nav:active {
+    transform: translateY(-50%) scale(0.92);
+  }
+
+  .lightbox-prev {
+    left: 24px;
+  }
+
+  .lightbox-next {
+    right: 24px;
+  }
+
+  #lightbox-img {
+    max-width: 85vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 600px) {
+    .lightbox-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+    .lightbox-prev {
+      left: 10px;
+    }
+    .lightbox-next {
+      right: 10px;
+    }
+    #lightbox-img {
+      max-width: 95vw;
+    }
+  }
+</style>
