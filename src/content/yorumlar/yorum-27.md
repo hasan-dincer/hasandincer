@@ -1,6 +1,6 @@
 ---
 ad: "Cansu Hanım"
-sehir: "İstanbul"
+sehir: "Malatya"
 kitap: "Bizi Unutma Soffiya"
 puan: 5
 tarih: 2026-11-25
